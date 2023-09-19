@@ -1,0 +1,160 @@
+{% extends 'main.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div id="questions-info-section" class="container-fluid {{vehicle.url_name}} questions-display-setting"
+    style="background: linear-gradient(to right, rgba(0, 0, 0, 0.024), rgba(0, 0, 0, 0.47) 49.16%, rgba(245, 47, 47, 0.141)), url({% static 'Images/' %}{{vehicle.name}}_display_options.jpg); background-position: 55% 0%;">
+    <div class="row justify-content-center">
+        <div id="questions-info-text" class="col-6 text-center">
+            <p>Prikazana so vprašanja za</p>
+            <h1 class="mb-4">{{ vehicle.name }}</h1>
+        </div>
+        <!-- <img id="vehicle-img" src="{% static 'Images/motorcycle_side.png' %}" alt=""> -->
+    </div>
+</div>
+
+<div class="container-fluid questions-display-setting" id="questions-display-options">
+    <div class="row">
+        <div class="display-option col-lg-4 col-sm-12 d-flex justify-content-center align-items-center">
+            <p>Prikaži po: </p>
+            <button class="btn btn-outline-primary me-2" href="">Eno Vprašanje</button>
+            <button class="btn btn-primary" href="">Vsa Vprašanja</button>
+        </div>
+
+        <div class="display-option col-lg-4 col-sm-12 d-flex justify-content-center align-items-center">
+            <p>Način: </p>
+            <button class="btn btn-primary me-2" href="">Reši test</button>
+            <button class="btn btn-outline-primary" href="">Vsa vprašanja</button>
+        </div>
+
+        <div class="display-option col-lg-4 col-sm-12 d-flex justify-content-center align-items-center">
+            <p>Razvrsti glede na: </p>
+            <select class="form-select w-50" aria-label="Default select example">
+                <option value="3" selected>Naključno</option>
+                <option value="1">Točke: višje najprej</option>
+                <option value="2">Točke: nižje najprej</option>
+                <option value="3">Težavnost: težje najprej</option>
+                <option value="3">Težavnost: lažje najprej</option>
+            </select>
+        </div>
+
+        <div class="col-12 text-center">
+            <p>Prikazanih je <span id="questions-count">{{ questions|length }}</span> / {{ num_of_questions }} vprašanj
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- ! Questions -->
+<div id="questions" class="container">
+    {% for question in questions %}
+    <div class="infinite-item question row mb-4 p-3 {% if question.content.image_link != '' %}wiht-img{% endif %}">
+        <div class="col d-flex align-items-center">
+            <!-- * Question text -->
+            <div class="question-text col-12 d-flex justify-content-center align-items-center">
+                <div class="text-center">
+                    <h1>{{ question.content.questions_text }}</h1>
+                    <br>
+                    {% if question.content.image_link != "" %}
+                    <img src="{% static 'Images/QuestionImages/' %}{{question.content.image_link}}"
+                        alt="Slika vprašanja">
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="col-6 container right-side-question">
+            <!-- * Points -->
+            <div class="row text-center">
+                <p>Vprašanje je vredno {{ question.info.points }} / 5 točk. Id vprašanja {{question.id}}</p>
+            </div>
+
+            <hr>
+
+            <!-- * All Possible Answers -->
+            <div class="possible-answers row my-5">
+                {% for answer in question.content.answers %}
+
+                <div class="possible-answer {{question.content.type  }}">
+                    <!-- ? Check if this is right answer -->
+                    {% if forloop.counter0 in question.content.right_answers %}
+
+
+                    <!-- ? Else it is wrong one -->
+                    {% else %}
+                    {% endif %}
+
+                    <!-- ? Choosing right form type -->
+
+                    <div class="checkbox-wrapper-4 col-12">
+                        <input class="inp-cbx" id="{{question.id}}-{{forloop.counter0}}" type="checkbox" />
+                        <label class="cbx d-flex p-3 align-items-center" for="{{question.id}}-{{forloop.counter0}}"><span {% if question.content.type == "radio" %}style="border-radius: 50%;"{% endif %}>
+                                <svg width="12px" height="10px">
+                                    <use xlink:href="#{{question.id}}-{{forloop.counter0}}-check-4"></use>
+                                </svg></span><span>{{ answer }}</span></label>
+                        <svg class="inline-svg">
+                            <symbol id="{{question.id}}-{{forloop.counter0}}-check-4" viewbox="0 0 12 10">
+                                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                            </symbol>
+                        </svg>
+                    </div>
+                    
+                </div>
+
+
+                {% endfor %}
+            </div>
+
+            <!-- * Answer -->
+            <div class="right-answer-alert row text-center">
+                {% if forloop.counter|divisibleby:2 %}
+                <!-- ! Right answer -->
+                <div class="alert alert-success right-answer answer" role="alert">
+                    <img src="{% static 'Images/correct_ans.png' %}" width="200" alt="">
+                    <div class="inner-text">
+                        <p><b>Pravilni odgovor: </b>{{ question.content.right_answer_response }}</p>
+                    </div>
+                </div>
+
+                {% else %}
+                <!-- ! Wrong answer -->
+                <div class="alert alert-danger wrong-answer answer" role="alert">
+                    <img src="{% static 'Images/wrong_ans2.png' %}" width="200" alt="">
+                    <div class="inner-text">
+                        <p><b>Pravilni odgovor: </b>{{ question.content.right_answer_response }}</p>
+                        Vaš odgovor se rahlo razlikuje od pravilnega, zato 0 točk!
+                    </div>
+                </div>
+
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+    {% if questions.has_next %}
+    <a class="infinite-more-link" href="?page={{ questions.next_page_number }}" hidden></a>
+    {% endif %}
+
+</div>
+
+<script>
+    var prevScrollpos = window.pageYOffset;
+    window.onscroll = function () {
+        var currentScrollPos = window.pageYOffset;
+        if (currentScrollPos > 150) {
+            if (prevScrollpos > currentScrollPos) {
+                document.getElementById("questions-display-options").style.display = "block";
+                // document.getElementById("questions-info-section").classList.add("do-not-show");
+            } else {
+                document.getElementById("questions-display-options").style.display = "none";
+                // console.log((-1) * document.getElementById("questions-info-section").clientHeight)
+                // document.getElementById("questions-display-options").classList.remove("do-not-show");
+            }
+            prevScrollpos = currentScrollPos;
+        }
+    }
+</script>
+
+{% endblock content %}

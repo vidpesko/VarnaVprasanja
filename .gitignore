@@ -1,0 +1,6 @@
+# Ignore private files
+PRIVATE.py
+venv/
+.idea/
+chrome-mac-arm64/
+.DS_Store

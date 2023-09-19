@@ -1,0 +1,341 @@
+{% extends 'main.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<!-- ======= Intro Section ======= -->
+<section id="hero">
+
+    <div class="container">
+        <div class="row justify-content-between">
+            <div class="col-lg-7 pt-5 pt-lg-0 order-2 order-lg-1 d-flex align-items-center">
+                <div data-aos="zoom-out">
+                    <h1>Načitaj se vprašanj za <span>CPP Izpit</span></h1>
+                    <h2>Vsa vprašanja, za vse kategorije, ki jih lahko dobiš na CPP izpitu</h2>
+                    <div class="text-center text-lg-start">
+                        <a href="#team" class="btn-get-started scrollto">Izberi Vozilo</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 order-1 order-lg-2 hero-img" data-aos="zoom-out" data-aos-delay="300">
+                <img src="{% static 'Images/TemplateImages/hero-img.png' %}" class="img-fluid animated" alt="">
+            </div>
+        </div>
+    </div>
+
+    <svg class="hero-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+        viewBox="0 24 150 28 " preserveAspectRatio="none">
+        <defs>
+            <path id="wave-path" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z">
+        </defs>
+        <g class="wave1">
+            <use xlink:href="#wave-path" x="50" y="3" fill="rgba(255,255,255, .1)">
+        </g>
+        <g class="wave2">
+            <use xlink:href="#wave-path" x="50" y="0" fill="rgba(255,255,255, .2)">
+        </g>
+        <g class="wave3">
+            <use xlink:href="#wave-path" x="50" y="9" fill="#fff">
+        </g>
+    </svg>
+
+</section><!-- End Intro -->
+
+
+<!-- ======= Choose Section ======= -->
+<section id="team" class="team">
+    <div class="container">
+
+        <div class="section-title" data-aos="fade-up">
+            <h2>Vozila</h2>
+            <p>Izberite vozilo</p>
+        </div>
+
+        <div class="row justify-content-center" data-aos="fade-left">
+
+            {% for vehicle in vehicles %}
+
+            <!-- <a class="vehicle-wrapper-link" href="{% url 'questions' vehicle.url_name %}"> -->
+            <div class="col-lg-3 col-md-6">
+                <div class="member" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="pic"><img src="{% static 'Images' %}/{{ vehicle.icon_path }}" class="img-fluid" alt="">
+                    </div>
+                    <div class="member-info">
+                        <h4>{{ vehicle.name }}</h4>
+                        <span>{{ vehicle.description }}</span>
+                        <div class="social d-flex justify-content-center">
+                            {% for c in vehicle.get_categories %}
+                            <div class="category-icon">
+                                <a href="">{{ c }}</a>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <a class="btn btn-primary mt-3 choose-vehicle w-50" href="{% url 'questions' vehicle.url_name %}">Poglej <i class="fa-solid fa-eye"></i></a>
+                    </div>
+                </div>
+            </div>
+            <!-- </a> -->
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+</section><!-- End Team Section -->
+
+
+<!-- ======= Gallery Section ======= -->
+<section id="gallery" class="gallery">
+    <div class="container">
+
+        <div class="section-title" data-aos="fade-up">
+            <h2>Gallery</h2>
+            <p>Check our Gallery</p>
+        </div>
+
+        <div class="row g-0" data-aos="fade-left">
+
+            <div class="col-lg-3 col-md-4">
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="100">
+                    <a href="{% static 'TemplateImages/gallery/gallery-1.jpg' %}" class="gallery-lightbox">
+                        <img src="{% static 'Images/TemplateImages/gallery/gallery-1.jpg' %}" alt="" class="img-fluid">
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-4">
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="150">
+                    <a href="assets/img/gallery/gallery-2.jpg" class="gallery-lightbox">
+                        <img src="assets/img/gallery/gallery-2.jpg" alt="" class="img-fluid">
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-4">
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="200">
+                    <a href="assets/img/gallery/gallery-3.jpg" class="gallery-lightbox">
+                        <img src="assets/img/gallery/gallery-3.jpg" alt="" class="img-fluid">
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-4">
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="250">
+                    <a href="assets/img/gallery/gallery-4.jpg" class="gallery-lightbox">
+                        <img src="assets/img/gallery/gallery-4.jpg" alt="" class="img-fluid">
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-4">
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="300">
+                    <a href="assets/img/gallery/gallery-5.jpg" class="gallery-lightbox">
+                        <img src="assets/img/gallery/gallery-5.jpg" alt="" class="img-fluid">
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-4">
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="350">
+                    <a href="assets/img/gallery/gallery-6.jpg" class="gallery-lightbox">
+                        <img src="assets/img/gallery/gallery-6.jpg" alt="" class="img-fluid">
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-4">
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="400">
+                    <a href="assets/img/gallery/gallery-7.jpg" class="gallery-lightbox">
+                        <img src="assets/img/gallery/gallery-7.jpg" alt="" class="img-fluid">
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-4">
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="450">
+                    <a href="assets/img/gallery/gallery-8.jpg" class="gallery-lightbox">
+                        <img src="assets/img/gallery/gallery-8.jpg" alt="" class="img-fluid">
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section><!-- End Gallery Section -->
+
+<!-- ======= Testimonials Section ======= -->
+<section id="testimonials" class="testimonials">
+    <div class="container">
+
+        <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
+            <div class="swiper-wrapper">
+
+                <div class="swiper-slide">
+                    <div class="testimonial-item">
+                        <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
+                        <h3>Saul Goodman</h3>
+                        <h4>Ceo &amp; Founder</h4>
+                        <p>
+                            <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                            Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus.
+                            Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
+                            <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                        </p>
+                    </div>
+                </div><!-- End testimonial item -->
+
+                <div class="swiper-slide">
+                    <div class="testimonial-item">
+                        <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
+                        <h3>Sara Wilsson</h3>
+                        <h4>Designer</h4>
+                        <p>
+                            <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                            Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum
+                            eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim
+                            culpa.
+                            <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                        </p>
+                    </div>
+                </div><!-- End testimonial item -->
+
+                <div class="swiper-slide">
+                    <div class="testimonial-item">
+                        <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
+                        <h3>Jena Karlis</h3>
+                        <h4>Store Owner</h4>
+                        <p>
+                            <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                            Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis
+                            minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.
+                            <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                        </p>
+                    </div>
+                </div><!-- End testimonial item -->
+
+                <div class="swiper-slide">
+                    <div class="testimonial-item">
+                        <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
+                        <h3>Matt Brandon</h3>
+                        <h4>Freelancer</h4>
+                        <p>
+                            <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                            Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim
+                            velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum
+                            veniam.
+                            <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                        </p>
+                    </div>
+                </div><!-- End testimonial item -->
+
+                <div class="swiper-slide">
+                    <div class="testimonial-item">
+                        <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
+                        <h3>John Larson</h3>
+                        <h4>Entrepreneur</h4>
+                        <p>
+                            <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                            Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam
+                            enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore
+                            nisi cillum quid.
+                            <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                        </p>
+                    </div>
+                </div><!-- End testimonial item -->
+
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+
+    </div>
+</section><!-- End Testimonials Section -->
+
+<!-- ======= F.A.Q Section ======= -->
+<section id="faq" class="faq section-bg">
+    <div class="container">
+
+        <div class="section-title" data-aos="fade-up">
+            <h2>F.A.Q</h2>
+            <p>Frequently Asked Questions</p>
+        </div>
+
+        <div class="faq-list">
+            <ul>
+                <li data-aos="fade-up">
+                    <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" class="collapse"
+                        data-bs-target="#faq-list-1">Non consectetur a erat nam at lectus urna duis? <i
+                            class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                    <div id="faq-list-1" class="collapse show" data-bs-parent=".faq-list">
+                        <p>
+                            Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non
+                            curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.
+                        </p>
+                    </div>
+                </li>
+
+                <li data-aos="fade-up" data-aos-delay="100">
+                    <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse"
+                        data-bs-target="#faq-list-2" class="collapsed">Feugiat scelerisque varius morbi enim nunc? <i
+                            class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                    <div id="faq-list-2" class="collapse" data-bs-parent=".faq-list">
+                        <p>
+                            Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit
+                            laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium.
+                            Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa
+                            tincidunt dui.
+                        </p>
+                    </div>
+                </li>
+
+                <li data-aos="fade-up" data-aos-delay="200">
+                    <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse"
+                        data-bs-target="#faq-list-3" class="collapsed">Dolor sit amet consectetur adipiscing elit? <i
+                            class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                    <div id="faq-list-3" class="collapse" data-bs-parent=".faq-list">
+                        <p>
+                            Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus pulvinar
+                            elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit. Rutrum tellus
+                            pellentesque eu tincidunt. Lectus urna duis convallis convallis tellus. Urna molestie at
+                            elementum eu facilisis sed odio morbi quis
+                        </p>
+                    </div>
+                </li>
+
+                <li data-aos="fade-up" data-aos-delay="300">
+                    <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse"
+                        data-bs-target="#faq-list-4" class="collapsed">Tempus quam pellentesque nec nam aliquam sem et
+                        tortor consequat? <i class="bx bx-chevron-down icon-show"></i><i
+                            class="bx bx-chevron-up icon-close"></i></a>
+                    <div id="faq-list-4" class="collapse" data-bs-parent=".faq-list">
+                        <p>
+                            Molestie a iaculis at erat pellentesque adipiscing commodo. Dignissim suspendisse in est
+                            ante in. Nunc vel risus commodo viverra maecenas accumsan. Sit amet nisl suscipit adipiscing
+                            bibendum est. Purus gravida quis blandit turpis cursus in.
+                        </p>
+                    </div>
+                </li>
+
+                <li data-aos="fade-up" data-aos-delay="400">
+                    <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse"
+                        data-bs-target="#faq-list-5" class="collapsed">Tortor vitae purus faucibus ornare. Varius vel
+                        pharetra vel turpis nunc eget lorem dolor? <i class="bx bx-chevron-down icon-show"></i><i
+                            class="bx bx-chevron-up icon-close"></i></a>
+                    <div id="faq-list-5" class="collapse" data-bs-parent=".faq-list">
+                        <p>
+                            Laoreet sit amet cursus sit amet dictum sit amet justo. Mauris vitae ultricies leo integer
+                            malesuada nunc vel. Tincidunt eget nullam non nisi est sit amet. Turpis nunc eget lorem
+                            dolor sed. Ut venenatis tellus in metus vulputate eu scelerisque.
+                        </p>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+
+    </div>
+</section><!-- End F.A.Q Section -->
+
+
+{% endblock content %}

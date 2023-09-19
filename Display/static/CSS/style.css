@@ -1,0 +1,255 @@
+/* ! Choose Vehicle */
+.team #vehicle-wrapper-link {
+    all: unset;
+}
+
+
+
+/* ! Questions */
+.questions-display-setting {
+    background-color: grey;
+}
+
+#questions-info-section {
+    background-size: cover;
+}
+
+#questions-display-options {
+    z-index: 10;
+    position: sticky;
+    top: 60px;
+    padding-top: 10px;
+    margin-bottom: 20px;
+}
+
+#questions-info-text {
+    margin-top: 100px;
+    color: white;
+}
+
+#questions-display-options .display-option {
+    margin-bottom: 16px;
+}
+
+#questions-display-options .display-option p {
+    margin-bottom: 0px !important;
+    margin-right: 6px;
+}
+
+@media only screen and (max-height: 500px) {
+    #questions-info-section {
+        /* height: 80vh; */
+    }
+}
+
+@media only screen and (max-height: 650px) and (min-height: 501px) {
+    #questions-info-section.avto {
+        background-position: 51% 103% !important;
+        background-size: 190% !important;
+        /* height: 70vh; */
+    }
+}
+
+@media only screen and (min-width: 305px) {
+    #questions-info-section.avto {
+        background-position: 51% 20% !important;
+        background-size: 165% !important;
+        /* height: 70vh; */
+    }
+}
+
+@media only screen and (min-width: 380px) {
+    #questions-info-section.avto {
+        background-position: 50% 220% !important;
+        /* height: 70vh; */
+    }
+}
+
+@media only screen and (min-width: 440px) {
+    #questions-info-section.avto {
+        background-position: 51% 35% !important;
+        background-size: 100% !important;
+        /* height: 70vh; */
+    }
+}
+
+@media only screen and (min-width: 760px) {
+    #questions-info-section.avto {
+        background-position: 55% 40% !important;
+        background-size: 100% !important;
+        /* height: 70vh; */
+    }
+}
+
+/* * Actual question */
+.question {
+    position: relative;
+    border: 2px solid black;
+    border-radius: 16px;
+    /* height: 50vh; */
+}
+
+.question-text img {
+    max-width: 500px;
+    max-height: 250px;
+    border-radius: 16px;
+    transition: all 0.5s;
+}
+
+.question-text img:hover {
+    transform: scale(150%);
+    z-index: 100;
+}
+
+.question .right-side-question {
+    position: relative;
+}
+
+.question .answer {
+    border-radius: 16px !important;
+}
+
+.question .answer img {
+    position: absolute;
+    bottom: 0;
+    left: 0px;
+    height: 140px;
+    object-fit: contain;
+    opacity: 0.9;
+    z-index: 1;
+}
+
+.question .answer p {
+    margin: 0;
+    z-index: 2;
+}
+
+.question .right-answer-alert {
+}
+
+/* & Fancy custom checkbox */
+.checkbox-wrapper-4:hover {
+    background: rgba(0, 119, 255, 0.06);
+    border-radius: 6px;
+}
+
+.checkbox-wrapper-4 * {
+    box-sizing: border-box;
+}
+
+.checkbox-wrapper-4 .cbx {
+    -webkit-user-select: none;
+    user-select: none;
+    cursor: pointer;
+    padding: 6px 8px;
+    border-radius: 6px;
+    overflow: hidden;
+    transition: all 0.2s ease;
+    display: inline-block;
+}
+
+.checkbox-wrapper-4 .cbx:not(:last-child) {
+    margin-right: 6px;
+}
+
+.checkbox-wrapper-4 .cbx:hover {
+    /* background: rgba(0, 119, 255, 0.06); */
+}
+
+.checkbox-wrapper-4 .cbx span {
+    float: left;
+    vertical-align: middle;
+    transform: translate3d(0, 0, 0);
+}
+
+.checkbox-wrapper-4 .cbx span:first-child {
+    position: relative;
+    width: 18px;
+    height: 18px;
+    border-radius: 4px;
+    transform: scale(1);
+    border: 1px solid #cccfdb;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 1px rgba(0, 16, 75, 0.05);
+}
+
+.checkbox-wrapper-4 .cbx span:first-child svg {
+    position: absolute;
+    top: 3px;
+    left: 2px;
+    fill: none;
+    stroke: #fff;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 16px;
+    stroke-dashoffset: 16px;
+    transition: all 0.3s ease;
+    transition-delay: 0.1s;
+    transform: translate3d(0, 0, 0);
+}
+
+.checkbox-wrapper-4 .cbx span:last-child {
+    padding-left: 8px;
+    line-height: 18px;
+}
+
+.checkbox-wrapper-4 .cbx:hover span:first-child {
+    border-color: #07f;
+}
+
+.checkbox-wrapper-4 .inp-cbx {
+    position: absolute;
+    visibility: hidden;
+}
+
+.checkbox-wrapper-4 .inp-cbx:checked+.cbx span:first-child {
+    background: #07f;
+    border-color: #07f;
+    animation: wave-4 0.4s ease;
+}
+
+.checkbox-wrapper-4 .inp-cbx:checked+.cbx span:first-child svg {
+    stroke-dashoffset: 0;
+}
+
+.checkbox-wrapper-4 .inline-svg {
+    position: absolute;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+    user-select: none;
+}
+
+@media screen and (max-width: 640px) {
+    .checkbox-wrapper-4 .cbx {
+        width: 100%;
+        display: inline-block;
+    }
+}
+
+@-moz-keyframes wave-4 {
+    50% {
+        transform: scale(0.9);
+    }
+}
+
+@-webkit-keyframes wave-4 {
+    50% {
+        transform: scale(0.9);
+    }
+}
+
+@-o-keyframes wave-4 {
+    50% {
+        transform: scale(0.9);
+    }
+}
+
+@keyframes wave-4 {
+    50% {
+        transform: scale(0.9);
+    }
+}
+
+/* & And fancy radio box */
